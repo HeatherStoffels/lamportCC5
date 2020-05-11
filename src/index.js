@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 
 const initialState = 0;
 
-const passengerState = [];
+
 
 const firstReducer = (state = initialState, action) => {
     console.log("in first reducer", state, action);
@@ -25,19 +25,10 @@ const firstReducer = (state = initialState, action) => {
  
   
   };
-  const secondReducer = (state = passengerState, action) => {
-    console.log("in second reducer", state, action);
-    
-   if (action.type === "passenger") {
-    // console.log("in first reducer", action.type, state);
-    return { ...state, passenger: action.payload };
-  }
- 
   
-  };
 
 // use reducer in store
-const storeInstance = createStore( firstReducer, secondReducer );
+const storeInstance = createStore( firstReducer );
 
 ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, document.getElementById('root'));
 
