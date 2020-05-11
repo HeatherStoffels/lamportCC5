@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // THIS COMPONENT IS OUR INTERFACE FOR PASSENGER CHECK IN
 // YOU SHOULD DISPLAY THE CURRENT PASSENGERS
 // INPUT SHOULD COLLECT INFO, BUTTON SHOULD ADD THEM TO THE LIST
+import { connect } from "react-redux";
 
 class Passengers extends Component {
 state = {
@@ -9,7 +10,7 @@ state = {
 }
 handleChange = (event, property) => {
     console.log("in handlechange");
-    if (property === "comments")
+    if (property === "passenger")
       this.setState({
         [property]: event.target.value,
       });
@@ -24,14 +25,17 @@ handleChange = (event, property) => {
       <div>
         <h2>Passengers</h2>
 
-        <input type="text" name="name" placeholder="Enter Name" onChange={(event) => this.handleChange(event, "comments")} />
+        <input type="text" name="name" placeholder="Enter Name" onChange={(event) => this.handleChange(event, "passenger")} />
         <button onClick={this.handleClick}>Add Passenger</button>
 
-        <ul>PASSENGER LIST: GOES HERE</ul>
+        <ul>PASSENGER LIST: {this.props.reduxState}</ul>
      
       </div>
     )
   }
 }
+const reduxStateToProps = (reduxState) => ({ reduxState });
 
-export default Passengers;
+export default connect(reduxStateToProps)(Passengers);
+
+// export default Passengers;
